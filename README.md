@@ -1,63 +1,49 @@
-# Bookstore API
+# Bookstore API Documentation
 
-## Prerequisites
-- Node.js v14 or later
-- npm v6 or later
-- MongoDB
+## Overview
+This is a RESTful API for managing a bookstore application built using FastAPI. The API enables users to perform various CRUD operations on books, authors, and categories.
 
-## Environment Variables
-To run the project, create a `.env` file in the root directory and add the following environment variables:
+## Technology Stack
+The application is built with the following technologies:
+- **FastAPI** - A modern web framework for building APIs with Python 3.7+ based on standard Python type hints.
+- **PostgreSQL** - A powerful, open source object-relational database system.
+- **SQLAlchemy** - The Python SQL Toolkit and Object-Relational Mapping (ORM) system.
+- **Alembic** - A lightweight database migration tool for use with SQLAlchemy.
+- **Uvicorn** - A lightning-fast ASGI server implementation, using `uvloop` and `httptools`.
 
-```plaintext
-dbURI=<your_database_uri>
-JWT_SECRET=<your_jwt_secret>
-PORT=<your_port_number>
-```
+## API Endpoints
+- **GET /books** - Retrieve a list of books.
+- **POST /books** - Create a new book.
+- **GET /books/{book_id}** - Retrieve details of a specific book.
+- **PUT /books/{book_id}** - Update a specific book.
+- **DELETE /books/{book_id}** - Delete a specific book.
 
-## Database Setup
-1. Clone the repository and navigate to the project directory.
-2. Create a new MongoDB database (e.g., `bookstore`).
-3. Set the `dbURI` in the `.env` file to point to your MongoDB instance.
+## Database Models
+- **Book** - Represents a book in the bookstore.
+- **Author** - Represents an author associated with books.
+- **Category** - Represents categories that books can belong to.
 
-## API Documentation
-Refer to the [Postman Collection](link-to-postman-collection) for detailed API endpoints, expected request/response formats, and examples.
-
-## Development Guide
-1. Install dependencies:
+## Installation
+1. Clone the repository:
    ```bash
-   npm install
+   git clone https://github.com/Priyankakumaridu/bookstore-api.git
+   cd bookstore-api
    ```
-2. Start the application:
+2. Install the dependencies:
    ```bash
-   npm start
+   pip install -r requirements.txt
    ```
-3. Run tests:
+3. Run migrations:
    ```bash
-   npm test
+   alembic upgrade head
+   ```
+4. Start the server:
+   ```bash
+   uvicorn main:app --reload
    ```
 
-## Troubleshooting
-- **Issue:** Can't connect to MongoDB.
-  - **Solution:** Check your `dbURI` in the `.env` file.
-- **Issue:** JWT authentication fails.
-  - **Solution:** Ensure that `JWT_SECRET` is set in your `.env` file.
+## Usage
+After starting the server, you can interact with the API using tools like Postman or CURL. Ensure that PostgreSQL is running and the database is named as specified in the configuration file.
 
-## Project Structure
-```
-/bookstore-api
-├── /src
-│   ├── /controllers
-│   ├── /models
-│   ├── /routes
-│   └── index.js
-├── /tests
-└── package.json
-```
-
-## Contributors
-- Priyankakumaridu
-- Contributor 2
-- Contributor 3
-
----
-This README has been updated on **2026-04-10 10:44:22 UTC**.  
+## License
+This project is licensed under the MIT License.
